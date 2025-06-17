@@ -18,7 +18,7 @@ class ApiTokenController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['err' => $validator->errors()]);
+            return response()->json(['err' => $validator->errors()], 401);
         }
 
         $user = User::where('email', $request->email)->first(); // поиск пользователя

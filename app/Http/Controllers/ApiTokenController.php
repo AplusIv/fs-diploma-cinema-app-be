@@ -25,7 +25,7 @@ class ApiTokenController extends Controller
 
         // хэш пароля пользователя
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['err' => 'user not found'], 401);
+            return response()->json(['err' => ['errorText' => 'user not found']], 401);
         }
 
         // получение токена после всех проверок

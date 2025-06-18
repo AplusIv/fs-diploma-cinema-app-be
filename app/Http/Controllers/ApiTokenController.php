@@ -9,12 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ApiTokenController extends Controller
 {
-    public function createToken(Request $request) 
+    public function createToken(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
-            // 'device_name' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -28,13 +27,7 @@ class ApiTokenController extends Controller
             return response()->json(['err' => ['errorText' => 'user not found']], 401);
         }
 
-        // получение токена после всех проверок
-        // $token = $user->createToken($request->device_name);
-        // testing
-
-        // return ['token' => $token->plainTextToken];
         $token = $user->createToken("API TOKEN")->plainTextToken;
-        // return ['token' => $token];
         return response()->json(['token' => $token], 200);
     }
 

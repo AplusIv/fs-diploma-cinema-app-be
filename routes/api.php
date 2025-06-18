@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/createToken', [ApiTokenController::class, 'createToken']);
 Route::middleware('auth:sanctum')->post('/logout', [ApiTokenController::class, 'deleteToken']);
 
-
+// Получение текущего пользователя
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     // return $request->user();
         // return Auth::user();
@@ -75,43 +75,3 @@ Route::prefix('guest')->group(function () {
     // получение билетов по ID конкретного заказа
     Route::get('/tickets/order/{id}', [TicketController::class, 'getTicketsByOrderId']);
 });
-
-
-// api resourse without authorization
-// Route::apiResource('halls', HallController::class);
-// Route::apiResource('movies', MovieController::class);
-// Route::apiResource('sessions', SessionController::class);
-// Route::apiResource('places', PlaceController::class);
-
-// Route::apiResource('tickets', TicketController::class);
-// Route::apiResource('orders', OrderController::class);
-
-/* // client requests (not protected)
-Route::get('/halls', [HallController::class, 'index']);
-Route::get('/movies', [MovieController::class, 'index']);
-Route::get('/sessions', [SessionController::class, 'index']);
-Route::get('/places', [PlaceController::class, 'index']); */
-
-// client requests (not protected)
-// Route::get('/halls', [HallController::class, 'index']);
-// Route::get('/movies', [MovieController::class, 'index']);
-// Route::get('/sessions', [SessionController::class, 'index']);
-// Route::get('/places', [PlaceController::class, 'index']);
-
-
-
-
-// Резервные пути (до гостевых путей):
-// 
-// получение сеансов на конкретную дату
-// Route::middleware('auth:sanctum')->get('/sessions/date/{date}', [SessionController::class, 'getSessionsByDate']);
-
-// получение сеансов на конкретную дату (без авторизации)
-// Route::get('/sessions/date/{date}', [SessionController::class, 'getSessionsByDate']);
-
-
-// получение билетов по ID конкретного заказа
-// Route::middleware('auth:sanctum')->get('/tickets/order/{id}', [TicketController::class, 'getTicketsByOrderId']);
-
-// получение билетов по ID конкретного заказа (без авторизации)
-// Route::get('/tickets/order/{id}', [TicketController::class, 'getTicketsByOrderId']);
